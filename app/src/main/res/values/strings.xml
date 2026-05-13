@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NearbyEats</string>
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_colegas">Colegas</string>
+    <string name="menu_restaurante">Restaurante</string>
+    <string name="menu_calculo">Calculo</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="bienvenido">¡Bienvenido a NearbyEats!</string>
+</resources>
