@@ -21,11 +21,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.nearbyeats_app.domain.service.AuthService
 import com.example.nearbyeats_app.presentation.navigation.Screen
 import com.example.nearbyeats_app.ui.theme.*
 
 @Composable
-fun MainMenuScreen(navController: NavController) {
+fun MainMenuScreen(
+    navController: NavController,
+    authService: AuthService
+) {
     var showLogoutDialog by remember { mutableStateOf(false) }
 
     if (showLogoutDialog) {
@@ -34,7 +38,14 @@ fun MainMenuScreen(navController: NavController) {
             title = { Text("Cerrar Sesión") },
             text = { Text("¿Deseas cerrar tu sesión?") },
             confirmButton = {
-                TextButton(onClick = { showLogoutDialog = false }) {
+                TextButton(onClick = {
+                    authService.logout()
+                    showLogoutDialog = false
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(Screen.Menu.route) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                }) {
                     Text("Sí", color = LogoutRed, fontWeight = FontWeight.Bold)
                 }
             },
